@@ -24,7 +24,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.assessment.test.activities.NewArticleDetailsActivity.REQUEST_CODE;
+import static android.assessment.test.activities.NewsArticleDetailsActivity.REQUEST_CODE;
 
 
 public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleBinding> {
@@ -107,7 +107,7 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
             listingAdapter = new ListingAdapter(NewsArticleActivity.this, viewModel.getAppManager(), viewModel.newsArticle, new ListingAdapter.OnClickListener() {
                 @Override
                 public void onItemClick(int position, NewsArticle newsArticle, RowListingsBinding binding) {
-                    NewArticleDetailsActivity.openActivityForResult(NewsArticleActivity.this, newsArticle, binding.thumbIv, REQUEST_CODE, position);
+                    NewsArticleDetailsActivity.openActivityForResult(NewsArticleActivity.this, newsArticle, binding.thumbIv, REQUEST_CODE, position);
                 }
             });
 

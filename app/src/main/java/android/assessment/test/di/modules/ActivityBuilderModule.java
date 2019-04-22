@@ -2,7 +2,7 @@ package android.assessment.test.di.modules;
 
 
 
-import android.assessment.test.activities.NewArticleDetailsActivity;
+import android.assessment.test.activities.NewsArticleDetailsActivity;
 import android.assessment.test.activities.NewsArticleActivity;
 
 import dagger.Module;
@@ -15,5 +15,5 @@ public abstract class ActivityBuilderModule {
     abstract NewsArticleActivity newsArticleActivity();
 
     @ContributesAndroidInjector
-    abstract NewArticleDetailsActivity newArticleDetailsActivity();
+    abstract NewsArticleDetailsActivity newArticleDetailsActivity();
 }

@@ -12,7 +12,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
 
-public class NewArticleDetailsActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleDetailsBinding> {
+public class NewsArticleDetailsActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleDetailsBinding> {
 
     public static final int REQUEST_CODE = 100;
     public final static String LISTING_POSITION = "listing_index";
@@ -33,7 +33,7 @@ public class NewArticleDetailsActivity extends BaseActivity<NewsArticleViewModel
                                              NewsArticle newsArticle,
                                              final View thumb, int requestCode, int listingPosition) {
 
-        Intent intent = new Intent(activity, NewArticleDetailsActivity.class);
+        Intent intent = new Intent(activity, NewsArticleDetailsActivity.class);
         intent.putExtra(NEWARTICLE_INFO_INTENT_KEY, newsArticle);
         intent.putExtra(LISTING_POSITION, listingPosition);
         if (thumb != null) {

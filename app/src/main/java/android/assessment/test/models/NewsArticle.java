@@ -1,10 +1,13 @@
 package android.assessment.test.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class NewsArticle implements Serializable {
+public class NewsArticle implements Parcelable {
 
     @SerializedName("per_facet")
     private Object perFacet;
@@ -49,6 +52,56 @@ public class NewsArticle implements Serializable {
     private String publishedDate;
 
     private String views;
+
+    protected NewsArticle(Parcel in) {
+        section = in.readString();
+        abstractStr = in.readString();
+        source = in.readString();
+        assetId = in.readString();
+        media = in.createTypedArray(Media.CREATOR);
+        type = in.readString();
+        title = in.readString();
+        url = in.readString();
+        adxKeywords = in.readString();
+        id = in.readString();
+        byline = in.readString();
+        publishedDate = in.readString();
+        views = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(section);
+        dest.writeString(abstractStr);
+        dest.writeString(source);
+        dest.writeString(assetId);
+        dest.writeTypedArray(media, flags);
+        dest.writeString(type);
+        dest.writeString(title);
+        dest.writeString(url);
+        dest.writeString(adxKeywords);
+        dest.writeString(id);
+        dest.writeString(byline);
+        dest.writeString(publishedDate);
+        dest.writeString(views);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<NewsArticle> CREATOR = new Creator<NewsArticle>() {
+        @Override
+        public NewsArticle createFromParcel(Parcel in) {
+            return new NewsArticle(in);
+        }
+
+        @Override
+        public NewsArticle[] newArray(int size) {
+            return new NewsArticle[size];
+        }
+    };
 
     public Object getPerFacet() {
         return perFacet;

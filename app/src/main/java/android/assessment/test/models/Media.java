@@ -28,7 +28,7 @@ public class Media implements Parcelable {
         caption = in.readString();
         type = in.readString();
         approvedForSyndication = in.readString();
-        //mediaMetadata = in.createTypedArrayList(Media.CREATOR);
+        mediaMetadata = in.createTypedArray(MediaMetadata.CREATOR);
     }
 
     public static final Creator<Media> CREATOR = new Creator<Media>() {
@@ -108,5 +108,6 @@ public class Media implements Parcelable {
         dest.writeString(caption);
         dest.writeString(type);
         dest.writeString(approvedForSyndication);
+        dest.writeTypedArray(mediaMetadata, flags);
     }
 }

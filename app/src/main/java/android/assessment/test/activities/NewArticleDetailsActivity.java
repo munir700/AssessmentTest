@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.view.View;
-import android.widget.ImageView;
 
 public class NewArticleDetailsActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleDetailsBinding> {
 
@@ -37,7 +36,7 @@ public class NewArticleDetailsActivity extends BaseActivity<NewsArticleViewModel
         Intent intent = new Intent(activity, NewArticleDetailsActivity.class);
         intent.putExtra(NEWARTICLE_INFO_INTENT_KEY, newsArticle);
         intent.putExtra(LISTING_POSITION, listingPosition);
-        /*if (thumb != null) {
+        if (thumb != null) {
             Pair<View, String> p1;
             ActivityOptionsCompat options;
 
@@ -48,8 +47,8 @@ public class NewArticleDetailsActivity extends BaseActivity<NewsArticleViewModel
 
             activity.startActivityForResult(intent, requestCode, options.toBundle());
         } else {
-        }*/
-        activity.startActivityForResult(intent, requestCode);
+            activity.startActivityForResult(intent, requestCode);
+        }
 
     }
 

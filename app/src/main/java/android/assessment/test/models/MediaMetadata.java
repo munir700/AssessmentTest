@@ -1,6 +1,9 @@
 package android.assessment.test.models;
 
-public class MediaMetadata {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MediaMetadata implements Parcelable {
     private String format;
 
     private String width;
@@ -8,6 +11,25 @@ public class MediaMetadata {
     private String url;
 
     private String height;
+
+    protected MediaMetadata(Parcel in) {
+        format = in.readString();
+        width = in.readString();
+        url = in.readString();
+        height = in.readString();
+    }
+
+    public static final Creator<MediaMetadata> CREATOR = new Creator<MediaMetadata>() {
+        @Override
+        public MediaMetadata createFromParcel(Parcel in) {
+            return new MediaMetadata(in);
+        }
+
+        @Override
+        public MediaMetadata[] newArray(int size) {
+            return new MediaMetadata[size];
+        }
+    };
 
     public String getFormat ()
     {
@@ -53,5 +75,18 @@ public class MediaMetadata {
     public String toString()
     {
         return "ClassPojo [format = "+format+", width = "+width+", url = "+url+", height = "+height+"]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(format);
+        dest.writeString(width);
+        dest.writeString(url);
+        dest.writeString(height);
     }
 }

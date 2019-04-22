@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import retrofit2.Call;
 
 public class NewsArticleViewModel extends BaseViewModel {
+    public MutableLiveData<List<NewsArticle>> newsArticle = new MutableLiveData<>();
 
     private ErrorResponse errorResponse;
     Call<List<NewsArticle>> listCall;
@@ -40,6 +41,6 @@ public class NewsArticleViewModel extends BaseViewModel {
     }
 
     public MutableLiveData<List<NewsArticle>> getMostViewedNYTimePopularArticles() {
-        return moviesRepository.getMostViewedNYTimePopularArticles(this, listCall);
+        return newsArticle = moviesRepository.getMostViewedNYTimePopularArticles(this, listCall);
     }
 }

@@ -14,6 +14,7 @@ public class NewsArticle {
 
     private String section;
 
+    @SerializedName("abstract")
     private String abstractStr;
 
     private String source;

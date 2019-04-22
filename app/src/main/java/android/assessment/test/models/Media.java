@@ -1,8 +1,11 @@
 package android.assessment.test.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Media {
     private String copyright;
 
+    @SerializedName("media-metadata")
     private MediaMetadata[] mediaMetadata;
 
     private String subtype;

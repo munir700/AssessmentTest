@@ -3,8 +3,10 @@ package android.assessment.test.activities;
 
 import android.arch.lifecycle.Observer;
 import android.assessment.test.R;
+import android.assessment.test.adapter.ListingAdapter;
 import android.assessment.test.base.BaseActivity;
 import android.assessment.test.databinding.ActivityNewsArticleBinding;
+import android.assessment.test.databinding.RowListingsBinding;
 import android.assessment.test.enums.ViewModelEventsEnum;
 import android.assessment.test.models.NewsArticle;
 import android.assessment.test.viewModels.NewsArticleViewModel;
@@ -12,10 +14,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
+import android.util.Log;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
 
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleBinding> {
+
+    private ListingAdapter listingAdapter;
 
     @Override
     public Class<NewsArticleViewModel> getViewModel() {
@@ -61,11 +73,58 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initUI();
         viewModel.getMostViewedNYTimePopularArticles().observe(this, new Observer<List<NewsArticle>>() {
             @Override
             public void onChanged(@Nullable List<NewsArticle> newsArticles) {
-
+                listingAdapter.setData(newsArticles);
             }
         });
     }
+
+
+    private void initUI() {
+
+        try {
+
+            ((SimpleItemAnimator) binding.recyclerResults.getItemAnimator()).setSupportsChangeAnimations(false);
+            listingAdapter = new ListingAdapter(NewsArticleActivity.this, viewModel.getAppManager(), viewModel.newsArticle, new ListingAdapter.OnClickListener() {
+
+
+                @Override
+                public void onItemClick(int position, NewsArticle newsArticle, RowListingsBinding binding) {
+
+                }
+
+
+            });
+
+            binding.recyclerResults.setAdapter(listingAdapter);
+         /*   scrollListener = new EndlessRecyclerViewScrollListener((LinearLayoutManager)  binding.mainContents.recyclerResults.getLayoutManager()) {
+                @Override
+                public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                    if (!viewModel.isLastPageLoaded()) {
+                        processNextRequest();
+                        listingAdapter.setFooterVisibility(View.VISIBLE);
+                    } else {
+                        listingAdapter.setFooterVisibility(View.GONE);
+                    }
+
+                }
+            };
+
+            binding.mainContents.recyclerResults.addOnScrollListener(scrollListener);
+            binding.mainContents.pullToRefresh.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    reintiateRequest();
+                }
+            });*/
+
+        } catch (Exception e) {
+            Log.e("Exception", "Error while initialize UI components and message =" + e.getMessage());
+        }
+
+    }
+
 }

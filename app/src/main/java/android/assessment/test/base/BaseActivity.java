@@ -3,6 +3,7 @@ package android.assessment.test.base;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 
+import android.assessment.test.R;
 import android.assessment.test.enums.ViewModelEventsEnum;
 import android.assessment.test.interfaces.ViewModelCallBackObserver;
 import android.assessment.test.ui.ActionDialog;
@@ -44,6 +45,7 @@ public abstract class BaseActivity<VM extends BaseViewModel, DB extends ViewData
     public void onObserve(ViewModelEventsEnum event, Object eventMessage) {
 
     }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
@@ -54,8 +56,7 @@ public abstract class BaseActivity<VM extends BaseViewModel, DB extends ViewData
         if (binding != null) {
             //TODO use layout in xml.It is recommended for approact.
             //otherwise the binding object is going to be null and non of the views are accessable.
-            // progressBar = binding.getRoot().findViewById(R.id.progressBar);
-            progressBar = new LinearLayout(this);
+            progressBar = binding.getRoot().findViewById(R.id.progressBar);
             if (progressBar != null) {
                 progressBar.setVisibility(View.GONE);
             }

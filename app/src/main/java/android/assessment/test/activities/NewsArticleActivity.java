@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +111,8 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
 
             binding.recyclerResults.setAdapter(listingAdapter);
 
+
+
             binding.searchAgainBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -117,6 +120,13 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
                 }
             });
 
+            binding.pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    binding.pullToRefresh.setRefreshing(false);
+                    loadNewsArticles();
+                }
+            });
         } catch (Exception e) {
             Log.e("Exception", "Error while initialize UI components and message =" + e.getMessage());
         }

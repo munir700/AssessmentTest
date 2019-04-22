@@ -39,13 +39,13 @@ public class ApiConverter<T> implements Converter<ResponseBody, T> {
 
     @Override
     public T convert(ResponseBody responseBody) throws IOException {
-        ResponseEnvelope metaResponse = this.upperWrapDelegate.convert(responseBody);
         try {
-            if (metaResponse.listItem != null) {
+            ResponseEnvelope metaResponse = this.upperWrapDelegate.convert(responseBody);
+            if (metaResponse.status.equalsIgnoreCase("OK")) {
                 ResponseEnvelope<T> envelopeList = delegate.convert(updateResponseBody);
                 return envelopeList.listItem;
             } else {
-                throw new HttpException(metaResponse.status, metaResponse.numResults);
+                throw new HttpException(metaResponse.errors[0], 0);
             }
         } catch (HttpException httpEx) {
             throw httpEx;

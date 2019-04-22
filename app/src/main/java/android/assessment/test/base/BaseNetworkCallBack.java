@@ -6,8 +6,6 @@ import android.assessment.test.enums.ViewModelEventsEnum;
 import android.assessment.test.utils.ApiUtils;
 
 
-import com.bumptech.glide.load.HttpException;
-
 import org.apache.http.conn.ConnectTimeoutException;
 
 import java.net.SocketException;
@@ -42,7 +40,7 @@ public class BaseNetworkCallBack<T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        notifyObserver(ViewModelEventsEnum.ON_API_CALL_STOP, null);
+        notifyObserver(ViewModelEventsEnum.ON_API_CALL_STOP, response.message());
     }
 
     @Override
@@ -52,37 +50,27 @@ public class BaseNetworkCallBack<T> implements Callback<T> {
             notifyObserver(ViewModelEventsEnum.ON_API_CALL_STOP, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
             return;
         }
-        boolean isHandled = false;
-        if (throwable instanceof HttpException) {
-            HttpException httpException = (HttpException) throwable;
-            if (httpException.getStatusCode() == 404) {
-                isHandled = true;
-                notifyObserver(ViewModelEventsEnum.ON_INVALID_AUTH_KEY, throwable);
-            }
-        }
-        if (!isHandled) {
-            if (throwable.getMessage().contains(ApiUtils.INVALID_AUTH_TOKEN)) {
-                notifyObserver(ViewModelEventsEnum.ON_INVALID_AUTH_KEY, throwable.getMessage());
-            } else if (throwable.getMessage().contains(ApiUtils.MALFORMED_JSON)) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
-            } else if (throwable.getMessage().contains(ApiUtils.CANCELED) || throwable.getMessage().contains(ApiUtils.SOCKET)) {
-            } else if (throwable instanceof SocketException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, throwable.getMessage());
-            } else if (throwable instanceof SocketTimeoutException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
-            } else if (throwable instanceof ConnectTimeoutException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
-            } else if (throwable instanceof UnknownHostException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
-            } else if (throwable instanceof NetworkErrorException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
-            } else if (throwable instanceof SSLException) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
-            } else if (throwable instanceof StreamResetException && ((StreamResetException) throwable).errorCode == ErrorCode.CANCEL) {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
-            } else {
-                notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, throwable.getMessage());
-            }
+        if (throwable.getMessage().contains(ApiUtils.INVALID_AUTH_TOKEN)) {
+            notifyObserver(ViewModelEventsEnum.ON_INVALID_AUTH_KEY, throwable.getMessage());
+        } else if (throwable.getMessage().contains(ApiUtils.MALFORMED_JSON)) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
+        } else if (throwable.getMessage().contains(ApiUtils.CANCELED) || throwable.getMessage().contains(ApiUtils.SOCKET)) {
+        } else if (throwable instanceof SocketException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, throwable.getMessage());
+        } else if (throwable instanceof SocketTimeoutException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
+        } else if (throwable instanceof ConnectTimeoutException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
+        } else if (throwable instanceof UnknownHostException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
+        } else if (throwable instanceof NetworkErrorException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_TIME_OUT_ERROR));
+        } else if (throwable instanceof SSLException) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
+        } else if (throwable instanceof StreamResetException && ((StreamResetException) throwable).errorCode == ErrorCode.CANCEL) {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
+        } else {
+            notifyObserver(ViewModelEventsEnum.ON_API_REQUEST_FAILURE, throwable.getMessage());
         }
         notifyObserver(ViewModelEventsEnum.ON_API_CALL_STOP, viewModel.getAppManager().getResourceString(R.string.STR_SERVER_NOT_REACHABLE_ERROR));
 

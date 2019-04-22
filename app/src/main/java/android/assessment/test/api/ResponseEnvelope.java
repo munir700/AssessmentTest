@@ -14,6 +14,8 @@ public class ResponseEnvelope<T> implements Serializable {
     @SerializedName("num_results")
     int  numResults;
 
+    String[] errors;
+
     @SerializedName("results")
     T listItem;
 

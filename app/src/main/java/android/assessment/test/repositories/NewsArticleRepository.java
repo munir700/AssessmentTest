@@ -45,6 +45,8 @@ public class NewsArticleRepository {
                     super.onResponse(call, response);
                     if (!call.isCanceled() && response.isSuccessful()) {
                         moviesLiveData.postValue(response.body());
+                    }else {
+                        viewModel.notifyObserver(ViewModelEventsEnum.ON_NO_DATA_RECEIVED, response.message());
                     }
                 }
 

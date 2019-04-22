@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">Android client application</string>
-
-
+    <string name="app_name">Assessment test</string>
     <string name="STR_SERVER_TIME_OUT_ERROR">The request timed out. Please try again later !</string>
     <string name="STR_SERVER_NOT_REACHABLE_ERROR">There was an error connecting to our serves. Please try again later.</string>
     <string name="NO_INTERNET_CONNECTIVITY">It looks like you are not connected to the internet. Please check your internet settings and try again.</string>
@@ -16,5 +14,5 @@
 
     <string name="STR_YES">Yes</string>
 
-    <color name="border_color_2">#E3E3E3</color>
+
 </resources>

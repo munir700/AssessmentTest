@@ -10,10 +10,6 @@
             name="vm"
             type="android.assessment.test.viewModels.NewsArticleViewModel" />
 
-        <variable
-            name="titleText"
-            type="android.databinding.ObservableField&lt;String&gt;" />
-
     </data>
 
     <RelativeLayout

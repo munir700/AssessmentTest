@@ -37,7 +37,7 @@ public class NewsArticleRepository {
             if (listCall != null)
                 listCall.cancel();
 
-            listCall = apiService.getMostViewedNYTimePopularArticles(550, 550, BuildConfig.API_KEY);
+            listCall = apiService.getMostViewedNYTimePopularArticles("all-sections", 7, BuildConfig.API_KEY);
             listCall.enqueue(new BaseNetworkCallBack<List<Object>>(viewModel) {
                 @Override
                 public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {

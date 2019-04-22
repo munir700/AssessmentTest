@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET("mostviewed/{section}/{period}/json")
-    Call<List<Object>> getMostViewedNYTimePopularArticles(@Path("section") int section, @Path("period") int period, @Query("api_key") String apiKey);
+    Call<List<Object>> getMostViewedNYTimePopularArticles(@Path("section") String section, @Path("period") int period, @Query("api-key") String apiKey);
 
 
     @GET("mostviewed/{section}/{period}/json")

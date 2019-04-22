@@ -2,8 +2,8 @@ package android.assessment.test.viewModels;
 
 import android.arch.lifecycle.MutableLiveData;
 
+import android.assessment.test.BR;
 import android.assessment.test.base.BaseViewModel;
-import android.assessment.test.models.Movie;
 import android.assessment.test.repositories.NewsArticleRepository;
 import android.assessment.test.utils.ErrorResponse;
 import android.databinding.Bindable;
@@ -17,7 +17,7 @@ import retrofit2.Call;
 public class NewsArticleViewModel extends BaseViewModel {
 
     private ErrorResponse errorResponse;
-    Call<List<Movie>> listCall;
+    Call<List<Object>> listCall;
 
     @Inject
     NewsArticleRepository moviesRepository;
@@ -35,10 +35,10 @@ public class NewsArticleViewModel extends BaseViewModel {
 
     public void setErrorResponse(ErrorResponse errorResponse) {
         this.errorResponse = errorResponse;
-        //notifyPropertyChanged(BR.errorResponse);
+        notifyPropertyChanged(BR.errorResponse);
     }
 
-    public MutableLiveData<List<Movie>> getMovies() {
-        return moviesRepository.getMoviesList(this, listCall);
+    public MutableLiveData<List<Object>> getMostViewedNYTimePopularArticles() {
+        return moviesRepository.getMostViewedNYTimePopularArticles(this, listCall);
     }
 }

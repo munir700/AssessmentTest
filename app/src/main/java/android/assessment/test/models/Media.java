@@ -1,10 +1,16 @@
 package android.assessment.test.models;
 
+import android.arch.persistence.room.TypeConverters;
+import android.assessment.test.typeconverters.DataTypeConverter;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Media {
+public class Media implements Parcelable {
     private String copyright;
 
+    @TypeConverters(DataTypeConverter.class)
     @SerializedName("media-metadata")
     private MediaMetadata[] mediaMetadata;
 
@@ -15,6 +21,27 @@ public class Media {
     private String type;
 
     private String approvedForSyndication;
+
+    protected Media(Parcel in) {
+        copyright = in.readString();
+        subtype = in.readString();
+        caption = in.readString();
+        type = in.readString();
+        approvedForSyndication = in.readString();
+        //mediaMetadata = in.createTypedArrayList(Media.CREATOR);
+    }
+
+    public static final Creator<Media> CREATOR = new Creator<Media>() {
+        @Override
+        public Media createFromParcel(Parcel in) {
+            return new Media(in);
+        }
+
+        @Override
+        public Media[] newArray(int size) {
+            return new Media[size];
+        }
+    };
 
     public String getCopyright() {
         return copyright;
@@ -67,5 +94,19 @@ public class Media {
     @Override
     public String toString() {
         return "ClassPojo [copyright = " + copyright + ", media-metadata = " + mediaMetadata + ", subtype = " + subtype + ", caption = " + caption + ", type = " + type + ", approvedForSyndication = " + approvedForSyndication + "]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(copyright);
+        dest.writeString(subtype);
+        dest.writeString(caption);
+        dest.writeString(type);
+        dest.writeString(approvedForSyndication);
     }
 }

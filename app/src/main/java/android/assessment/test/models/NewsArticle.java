@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName;
 public class NewsArticle {
 
     @SerializedName("per_facet")
-    private String[] perFacet;
+    private Object perFacet;
 
     @SerializedName("org_facet")
-    private String[] orgFacet;
+    private Object orgFacet;
 
-    private String column;
+    private Object column;
 
     private String section;
 
@@ -28,7 +28,7 @@ public class NewsArticle {
     private String title;
 
     @SerializedName("des_facet")
-    private String[] desFacet;
+    private Object desFacet;
 
     private String url;
 
@@ -36,7 +36,7 @@ public class NewsArticle {
     private String adxKeywords;
 
     @SerializedName("geo_facet")
-    private String[] geoFacet;
+    private Object geoFacet;
 
     private String id;
 
@@ -47,27 +47,27 @@ public class NewsArticle {
 
     private String views;
 
-    public String[] getPerFacet() {
+    public Object getPerFacet() {
         return perFacet;
     }
 
-    public void setPerFacet(String[] perFacet) {
+    public void setPerFacet(Object perFacet) {
         this.perFacet = perFacet;
     }
 
-    public String[] getOrgFacet() {
+    public Object getOrgFacet() {
         return orgFacet;
     }
 
-    public void setOrgFacet(String[] orgFacet) {
+    public void setOrgFacet(Object orgFacet) {
         this.orgFacet = orgFacet;
     }
 
-    public String getColumn() {
+    public Object getColumn() {
         return column;
     }
 
-    public void setColumn(String column) {
+    public void setColumn(Object column) {
         this.column = column;
     }
 
@@ -127,11 +127,11 @@ public class NewsArticle {
         this.title = title;
     }
 
-    public String[] getDesFacet() {
+    public Object getDesFacet() {
         return desFacet;
     }
 
-    public void setDesFacet(String[] desFacet) {
+    public void setDesFacet(Object desFacet) {
         this.desFacet = desFacet;
     }
 
@@ -151,11 +151,11 @@ public class NewsArticle {
         this.adxKeywords = adxKeywords;
     }
 
-    public String[] getGeoFacet() {
+    public Object getGeoFacet() {
         return geoFacet;
     }
 
-    public void setGeoFacet(String[] geoFacet) {
+    public void setGeoFacet(Object geoFacet) {
         this.geoFacet = geoFacet;
     }
 

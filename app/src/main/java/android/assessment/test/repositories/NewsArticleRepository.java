@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class MoviesRepository {
+public class NewsArticleRepository {
 
     @Inject
     ApiService apiService;
@@ -27,7 +27,7 @@ public class MoviesRepository {
     NetworkUtils networkUtils;
 
     @Inject
-    public MoviesRepository() {
+    public NewsArticleRepository() {
 
     }
 

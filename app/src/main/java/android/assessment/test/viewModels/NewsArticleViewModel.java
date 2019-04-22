@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import android.assessment.test.base.BaseViewModel;
 import android.assessment.test.models.Movie;
-import android.assessment.test.repositories.MoviesRepository;
+import android.assessment.test.repositories.NewsArticleRepository;
 import android.assessment.test.utils.ErrorResponse;
 import android.databinding.Bindable;
 
@@ -20,7 +20,7 @@ public class NewsArticleViewModel extends BaseViewModel {
     Call<List<Movie>> listCall;
 
     @Inject
-    MoviesRepository moviesRepository;
+    NewsArticleRepository moviesRepository;
 
     @Inject
     public NewsArticleViewModel() {

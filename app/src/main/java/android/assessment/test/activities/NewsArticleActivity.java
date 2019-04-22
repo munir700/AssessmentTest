@@ -4,7 +4,7 @@ package android.assessment.test.activities;
 import android.arch.lifecycle.Observer;
 import android.assessment.test.R;
 import android.assessment.test.base.BaseActivity;
-import android.assessment.test.databinding.ActivityMoviesBinding;
+import android.assessment.test.databinding.ActivityNewsArticleBinding;
 import android.assessment.test.enums.ViewModelEventsEnum;
 import android.assessment.test.models.Movie;
 import android.assessment.test.viewModels.NewsArticleViewModel;
@@ -15,7 +15,7 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
-public class MoviesActivity extends BaseActivity<NewsArticleViewModel, ActivityMoviesBinding> {
+public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleBinding> {
 
     @Override
     public Class<NewsArticleViewModel> getViewModel() {
@@ -24,7 +24,7 @@ public class MoviesActivity extends BaseActivity<NewsArticleViewModel, ActivityM
 
     @Override
     public int getLayoutRes() {
-        return R.layout.activity_movies;
+        return R.layout.activity_news_article;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MoviesActivity extends BaseActivity<NewsArticleViewModel, ActivityM
     }
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, MoviesActivity.class);
+        Intent intent = new Intent(context, NewsArticleActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
     }

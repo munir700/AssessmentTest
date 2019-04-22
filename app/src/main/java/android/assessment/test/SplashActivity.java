@@ -1,5 +1,6 @@
 package android.assessment.test;
 
+import android.assessment.test.activities.NewsArticleActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         public void run() {
             try {
 
-                startActivity(MainActivity.newIntent(SplashActivity.this));
+                startActivity(NewsArticleActivity.newIntent(SplashActivity.this));
                 SplashActivity.this.finish();
             } catch (Exception e) {
                 e.printStackTrace();

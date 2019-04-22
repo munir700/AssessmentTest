@@ -43,7 +43,7 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:singleLine="true"
-                    android:text="Movies list"
+                    android:text="NY Times Most Popular"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"

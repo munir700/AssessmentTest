@@ -6,6 +6,7 @@ import android.assessment.test.R;
 import android.assessment.test.base.BaseActivity;
 import android.assessment.test.databinding.ActivityNewsArticleBinding;
 import android.assessment.test.enums.ViewModelEventsEnum;
+import android.assessment.test.models.NewsArticle;
 import android.assessment.test.viewModels.NewsArticleViewModel;
 import android.content.Context;
 import android.content.Intent;
@@ -60,9 +61,9 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel.getMostViewedNYTimePopularArticles().observe(this, new Observer<List<Object>>() {
+        viewModel.getMostViewedNYTimePopularArticles().observe(this, new Observer<List<NewsArticle>>() {
             @Override
-            public void onChanged(@Nullable List<Object> newsArticles) {
+            public void onChanged(@Nullable List<NewsArticle> newsArticles) {
 
             }
         });

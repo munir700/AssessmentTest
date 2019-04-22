@@ -9,17 +9,13 @@ import java.io.Serializable;
 
 public class ResponseEnvelope<T> implements Serializable {
 
-    int id;
-    int page;
-
-    @SerializedName("status_code")
-    int status;
-    @SerializedName("status_message")
-    String message;
+    @SerializedName("status")
+    String status;
+    @SerializedName("num_results")
+    int  numResults;
 
     @SerializedName("results")
     T listItem;
-
 
     public static ExclusionStrategyResponse getExclusionStrategy(){
         return new ExclusionStrategyResponse();

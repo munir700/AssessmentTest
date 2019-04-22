@@ -7,6 +7,7 @@ import android.assessment.test.api.ApiService;
 import android.assessment.test.base.BaseNetworkCallBack;
 import android.assessment.test.base.BaseViewModel;
 import android.assessment.test.enums.ViewModelEventsEnum;
+import android.assessment.test.models.NewsArticle;
 import android.assessment.test.utils.NetworkUtils;
 
 import java.util.List;
@@ -30,17 +31,17 @@ public class NewsArticleRepository {
 
     }
 
-    public MutableLiveData<List<Object>> getMostViewedNYTimePopularArticles(final BaseViewModel viewModel, Call<List<Object>> listCall) {
+    public MutableLiveData<List<NewsArticle>> getMostViewedNYTimePopularArticles(final BaseViewModel viewModel, Call<List<NewsArticle>> listCall) {
 
-        final MutableLiveData<List<Object>> moviesLiveData = new MutableLiveData<>();
+        final MutableLiveData<List<NewsArticle>> moviesLiveData = new MutableLiveData<>();
         if (networkUtils.isConnectedToInternet()) {
             if (listCall != null)
                 listCall.cancel();
 
             listCall = apiService.getMostViewedNYTimePopularArticles("all-sections", 7, BuildConfig.API_KEY);
-            listCall.enqueue(new BaseNetworkCallBack<List<Object>>(viewModel) {
+            listCall.enqueue(new BaseNetworkCallBack<List<NewsArticle>>(viewModel) {
                 @Override
-                public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {
+                public void onResponse(Call<List<NewsArticle>> call, Response<List<NewsArticle>> response) {
                     super.onResponse(call, response);
                     if (!call.isCanceled() && response.isSuccessful()) {
                         moviesLiveData.postValue(response.body());
@@ -48,7 +49,7 @@ public class NewsArticleRepository {
                 }
 
                 @Override
-                public void onFailure(Call<List<Object>> call, Throwable throwable) {
+                public void onFailure(Call<List<NewsArticle>> call, Throwable throwable) {
                     super.onFailure(call, throwable);
                 }
             });

@@ -45,7 +45,7 @@ public class ApiConverter<T> implements Converter<ResponseBody, T> {
                 ResponseEnvelope<T> envelopeList = delegate.convert(updateResponseBody);
                 return envelopeList.listItem;
             } else {
-                throw new HttpException(/*metaResponse.message, metaResponse.status*/null);
+                throw new HttpException(metaResponse.status, metaResponse.numResults);
             }
         } catch (HttpException httpEx) {
             throw httpEx;

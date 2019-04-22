@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                 <android.support.v7.widget.AppCompatTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/title_tv_tb"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -59,7 +59,15 @@
 
 
         </android.support.v7.widget.Toolbar>
-        <include layout="@layout/movies_content" />
+
+        <include
+            android:id="@+id/main_contents"
+            layout="@layout/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+
+        <include layout="@layout/main_content" />
 
         <include layout="@layout/progressbar" />
     </RelativeLayout>

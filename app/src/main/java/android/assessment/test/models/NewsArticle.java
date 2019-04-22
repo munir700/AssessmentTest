@@ -2,7 +2,9 @@ package android.assessment.test.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class NewsArticle {
+import java.io.Serializable;
+
+public class NewsArticle implements Serializable {
 
     @SerializedName("per_facet")
     private Object perFacet;

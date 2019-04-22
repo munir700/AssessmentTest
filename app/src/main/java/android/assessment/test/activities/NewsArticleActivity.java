@@ -24,6 +24,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.assessment.test.activities.NewArticleDetailsActivity.REQUEST_CODE;
+
 
 public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleBinding> {
 
@@ -52,7 +54,7 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
                 hideProgress();
                 break;
             case ON_NO_DATA_RECEIVED:
-                if (eventMessage != null){
+                if (eventMessage != null) {
                     onApiRequestFailed(eventMessage.toString());
                 }
                 binding.recyclerResults.setVisibility(View.GONE);
@@ -105,12 +107,11 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
             listingAdapter = new ListingAdapter(NewsArticleActivity.this, viewModel.getAppManager(), viewModel.newsArticle, new ListingAdapter.OnClickListener() {
                 @Override
                 public void onItemClick(int position, NewsArticle newsArticle, RowListingsBinding binding) {
+                    NewArticleDetailsActivity.openActivityForResult(NewsArticleActivity.this, newsArticle, binding.thumbIv, REQUEST_CODE, position);
                 }
-
             });
 
             binding.recyclerResults.setAdapter(listingAdapter);
-
 
 
             binding.searchAgainBtn.setOnClickListener(new View.OnClickListener() {

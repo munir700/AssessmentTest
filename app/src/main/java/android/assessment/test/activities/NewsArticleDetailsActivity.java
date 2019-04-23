@@ -49,12 +49,30 @@ public class NewsArticleDetailsActivity extends BaseActivity<NewsArticleViewMode
         } else {
             activity.startActivityForResult(intent, requestCode);
         }
-
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+
+    public void onClose(View v) {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }

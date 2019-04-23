@@ -46,33 +46,27 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
         super.onObserve(event, eventMessage);
         switch (event) {
             case NO_INTERNET_CONNECTION:
-                binding.recyclerResults.setVisibility(View.GONE);
+                binding.pullToRefresh.setVisibility(View.GONE);
                 binding.constraintError.setVisibility(View.VISIBLE);
                 viewModel.setErrorResponse(new ErrorResponse.Builder(ErrorResponseEnum.NO_INTERNET_CONNECTION).build());
-                binding.pullToRefresh.setRefreshing(false);
-                binding.progressBarLoading.setVisibility(View.GONE);
                 hideProgress();
                 break;
             case ON_NO_DATA_RECEIVED:
                 if (eventMessage != null) {
                     onApiRequestFailed(eventMessage.toString());
                 }
-                binding.recyclerResults.setVisibility(View.GONE);
+                binding.pullToRefresh.setVisibility(View.GONE);
                 binding.constraintError.setVisibility(View.VISIBLE);
                 viewModel.newsArticle.setValue(new ArrayList<NewsArticle>());
                 listingAdapter.setData(new ArrayList<NewsArticle>());
-                binding.pullToRefresh.setRefreshing(false);
                 viewModel.setErrorResponse(new ErrorResponse.Builder(ErrorResponseEnum.NO_DATA_RECEIVED).build());
-                binding.progressBarLoading.setVisibility(View.GONE);
                 break;
             case ON_API_REQUEST_FAILURE:
                 binding.constraintError.setVisibility(View.VISIBLE);
                 viewModel.setErrorResponse(new ErrorResponse.Builder(ErrorResponseEnum.API_REQUEST_FAILURE).build());
-                binding.pullToRefresh.setRefreshing(false);
-                binding.progressBarLoading.setVisibility(View.GONE);
                 break;
             case ON_API_CALL_START:
-                binding.recyclerResults.setVisibility(View.VISIBLE);
+                binding.pullToRefresh.setVisibility(View.VISIBLE);
                 binding.constraintError.setVisibility(View.GONE);
                 showProgress();
                 break;

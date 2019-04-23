@@ -61,7 +61,6 @@
                 android:layout_marginEnd="@dimen/_6sdp"
                 android:gravity="start"
                 android:text='@{newsArticle.title}'
-                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"

@@ -43,4 +43,8 @@ public class NewsArticleViewModel extends BaseViewModel {
     public MutableLiveData<List<NewsArticle>> getMostViewedNYTimePopularArticles() {
         return newsArticle = moviesRepository.getMostViewedNYTimePopularArticles(this, listCall);
     }
+
+    public boolean isLoading(){
+        return false;
+    }
 }

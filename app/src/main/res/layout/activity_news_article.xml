@@ -67,12 +67,43 @@
             android:layout_below="@+id/toolbar"
             android:background="@color/grey_light">
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_color">
+
+                <EditText
+                    android:id="@+id/period_et"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:gravity="center"
+                    android:hint="Enter period for recent news article"
+                    android:inputType="number"
+                    android:padding="@dimen/_12sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/button"
+                    style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/period_et"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <android.support.design.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/progress_bar_loading"
-                android:layout_below="@id/toolbar"
+                android:layout_below="@id/input_layout"
                 android:visibility="visible">
 
 
@@ -108,7 +139,7 @@
                         android:layout_height="@dimen/_80sdp"
                         android:layout_marginBottom="@dimen/_7sdp"
                         android:src="@{vm.errorResponse.resourceId, default=@drawable/ic_error_small_nodata}"
-                        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -129,7 +160,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/guideline13" />
+                        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
                     <TextView
                         android:id="@+id/result_error_detail_2"
@@ -161,7 +192,7 @@
 
 
                     <android.support.constraint.Guideline
-                        android:id="@+id/guideline13"
+                        android:id="@+id/guideline"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"

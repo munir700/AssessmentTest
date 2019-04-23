@@ -40,8 +40,8 @@ public class NewsArticleViewModel extends BaseViewModel {
         notifyPropertyChanged(BR.errorResponse);
     }
 
-    public MutableLiveData<List<NewsArticle>> getMostViewedNYTimePopularArticles() {
-        return newsArticle = moviesRepository.getMostViewedNYTimePopularArticles(this, listCall);
+    public MutableLiveData<List<NewsArticle>> getMostViewedNYTimePopularArticles(int newsArticlePeriod) {
+        return newsArticle = moviesRepository.getMostViewedNYTimePopularArticles(this, listCall, newsArticlePeriod);
     }
 
     public boolean isLoading(){

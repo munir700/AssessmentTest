@@ -13,15 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.NewsArticleDetailsActivity"></activity>
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".activities.NewsArticleDetailsActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NewsArticleActivity" />
+        <activity
+            android:name=".activities.NewsArticleActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

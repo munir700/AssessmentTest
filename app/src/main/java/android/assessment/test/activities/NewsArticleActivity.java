@@ -29,6 +29,8 @@ import static android.assessment.test.activities.NewsArticleDetailsActivity.REQU
 
 public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, ActivityNewsArticleBinding> {
 
+    private int defaultPeriod = 7;
+
     private ListingAdapter listingAdapter;
 
     @Override
@@ -90,7 +92,7 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
         super.onCreate(savedInstanceState);
         binding.setVm(viewModel);
         initUI();
-        loadNewsArticles();
+        loadNewsArticles(defaultPeriod);
     }
 
 
@@ -111,7 +113,7 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
             binding.searchAgainBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadNewsArticles();
+                    loadNewsArticles(getInputPeriod());
                 }
             });
 
@@ -119,7 +121,14 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
                 @Override
                 public void onRefresh() {
                     binding.pullToRefresh.setRefreshing(false);
-                    loadNewsArticles();
+                    loadNewsArticles(getInputPeriod());
+                }
+            });
+
+            binding.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadNewsArticles(getInputPeriod());
                 }
             });
         } catch (Exception e) {
@@ -128,8 +137,17 @@ public class NewsArticleActivity extends BaseActivity<NewsArticleViewModel, Acti
 
     }
 
-    private void loadNewsArticles() {
-        viewModel.getMostViewedNYTimePopularArticles().observe(this, new Observer<List<NewsArticle>>() {
+    private int getInputPeriod() {
+        String period = binding.periodEt.getText().toString();
+        if (period.isEmpty())
+            return defaultPeriod;
+        else
+            return Integer.valueOf(period);
+
+    }
+
+    private void loadNewsArticles(int newsArticlePeriod) {
+        viewModel.getMostViewedNYTimePopularArticles(newsArticlePeriod).observe(this, new Observer<List<NewsArticle>>() {
             @Override
             public void onChanged(@Nullable List<NewsArticle> newsArticles) {
                 listingAdapter.setData(newsArticles);

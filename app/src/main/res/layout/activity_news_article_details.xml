@@ -123,6 +123,7 @@
                         android:text='@{newArticle.title != null ? newArticle.title:""}'
                         android:textColor="@color/text_color_4"
                         android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -147,6 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_7sdp"
                         android:ellipsize="end"
+                        android:maxLines="10"
                         android:padding="@dimen/_4sdp"
                         android:text='@{newArticle.abstract}'
                         app:layout_constraintEnd_toEndOf="parent"
@@ -172,6 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_7sdp"
                         android:ellipsize="end"
+                        android:maxLines="10"
                         android:padding="@dimen/_4sdp"
                         android:text='@{newArticle.adxKeywords}'
                         app:layout_constraintEnd_toEndOf="parent"
